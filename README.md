@@ -6,8 +6,7 @@ Implemented virtual memory management, page fetch, replacement algorithms to the
 
 
 #A list of WHAT is included:
-Queue *InitQueue()
-
+````Queue *InitQueue()````
 initiate a new queue, return the queue
 int IsEmpty( Queue * * pqueue) )
 check if the queue is empty. If the queue is empty, return 1, if it's not empty, return 0.
