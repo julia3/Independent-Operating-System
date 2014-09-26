@@ -5,7 +5,7 @@ A basic operating system for a hypothetical machine(C) which allows multi-proces
 Implemented virtual memory management, page fetch, replacement algorithms to the core
 
 
-----------------------A list of WHAT is included:------------------------------
+##----------------------A list of WHAT is included:------------------------------
 Queue *InitQueue()
 initiate a new queue, return the queue
 int IsEmpty( Queue * * pqueue) )
@@ -44,7 +44,7 @@ Run the first process on ready_queue.
 
 
 
-----------------------------SVC_HANDLER:-----------------------------------
+##----------------------------SVC_HANDLER:-----------------------------------
 SYSNUM_GET_TIME_OF_DAY
 Get the system time(absolute time)
 SYSNUM_SLEEP
@@ -88,7 +88,7 @@ PCB_queue and ready_queue. Then, return success.
 
 
 
----------------------------Justification of High Level Design:------------------------
+##---------------------------Justification of High Level Design:------------------------
 Here is justification of test1c:
 1. Create 5 processes.
 2. Now sleep see if one of the five processes has terminated.
