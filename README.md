@@ -7,22 +7,22 @@ Implemented virtual memory management, page fetch, replacement algorithms to the
 
 ###A list of WHAT is included:
 ````Queue *InitQueue()````
-initiate a new queue, return the queue
+Initiate a new queue, return the queue
 
 ````int IsEmpty(Queue *pqueue)````
-check if the queue is empty. If the queue is empty, return 1, if it's not empty, return 0.
+Check if the queue is empty. If the queue is empty, return 1, if it's not empty, return 0.
 
 ````PNode EnQueue(Queue *pqueue, PCB pitem)````
-insert a new item to the rear of the queue
+Insert a new item to the rear of the queue
 
 ````PNode DeQueue(Queue *pqueue, PCB *pitem)````
-delete the first item of the queue
+Delete the first item of the queue
 
 ````PNode RemoveAdvanced(Queue *pqueue,INT32 pid)````
-remove the PCB with pid from queue, return the removed PCB
+Remove the PCB with pid from queue, return the removed PCB
 
 ````INT32 Remove(Queue *pqueue, INT32 pid)````
-remove the PCB with process_id pid from queue.
+Remove the PCB with process_id pid from queue.
 If the PCB with process_id pid is removed successfully, return 0.
 If couldn’t find PCB with process_id pid, then return -1.
 
@@ -52,51 +52,63 @@ Run the first process on ready_queue.
 
 
 ###SVC_HANDLER:
-
+````
 SYSNUM_GET_TIME_OF_DAY
+````
 Get the system time(absolute time)
 
+````
 SYSNUM_SLEEP
+````
 A process sleep a certain amount of time. (see below)
-
+````
 SYSNUM_GET_PROCESS_ID
+````
 Get process ID.
 If process name is empty, get the process ID of currently running process;
 If process name is not in PCB_queue (a queue stores all processes), return ERR_BAD_PARAM;
 else, return the ID of this process and ERR_SUCCESS.
-
+````
 SYSNUM_CREATE_PROCESS
+````
 Create a process and check if its legal:
 If the process trying to create has illegal priority, return ERR_BAD_PARAM;
 If the process trying to create has exceed the MAX_PROCESS_NUMBER, return ERR_BAD_PARAM;
 If the process trying to create has the same name as an already existing process, return
-
+````
 ERR_BAD_PARAM
+````
 Else, put new PCB to PCB_queue and ready_queue.
-
-SYSNUM_TERMINATE_PROCESS````
+````
+SYSNUM_TERMINATE_PROCESS
+````
 If SystemCallData->Argument[0] is -2, exit the whole program;
 If SystemCallData->Argument[0] is -1, terminate the process itself;
 Else, terminate the process with process ID SystemCallData->Argument[0] if the process exist,
 remove it from PCB_queue, remove it from ready_queue, if not exist , return ERR_BAD_PARAM.
-
+````
 SYSNUM_SUSPEND_PROCESS
+````
 If SystemCallData->Argument[0] is -1, return ERR_BAD_PARAM;
 If there is PCB with process ID SystemCallData->Argument[0] in timer_queue, return
-
+````
 ERR_BAD_PARAM
+````
 If there is PCB with process ID SystemCallData->Argument[0] in suspend_queue, return
-
+````
 ERR_BAD_PARAM
+````
 If there is PCB with process ID SystemCallData->Argument[0] in ready_queue, it’s a legal suspend,
 return ERR_BAD_PARAM.
-
+````
 SYSNUM_RESUME_PROCESS
+````
 If the process with process ID SystemCallData->Argument[0] is in suspend_queue, then remove it
 from suspend_queue, add it to ready_queue. Then return success.
 Else, return ERR_BAD_PARAM.
-
+````
 SYSNUM_CHANGE_PRIORITY
+````
 If the pid is not in PCB_queue, return ERR_BAD_PARAM;
 If initial priority of PCB is illegal, return ERR_BAD_PARAM;
 Else, remove this PCB from PCB_queue and ready_queue, change its priority, and enqueue it into
